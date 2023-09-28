@@ -1,0 +1,18 @@
+{
+  "name": "client_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "author": "sontrx",
+  "license": "ISC",
+  "dependencies": {
+    "rollup": "^3.29.4"
+  },
+  "devDependencies": {
+    "rollup-plugin-uglify": "^6.0.4"
+  }
+}

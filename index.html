@@ -1,0 +1,42 @@
+<head></head>
+<body>
+    <div id="app">app</div>
+    <section>
+        <ul id="large_list"></ul>
+        <button onclick="removeItem()">remove -</button>
+    </section>
+    <script src="/dist/js/main.js"></script>
+    <script>
+        let { createSignal, getElem, bindTemplate } = app.utils;
+
+        let data = createSignal({ name: 'Sontrx' });
+        let count = createSignal(0);
+        let $app = bindTemplate('#app', () => `
+            <h4>${data.name}: ${count.value}</h4>
+            <button id="add_button">click me +</button>
+            <input id="name_input" data-input="change-name" type="text" value="${data.name}"></input>
+        `);
+        let $button = getElem('#add_button');
+        $button.addEventListener('click', (event) => {
+            count.value += 1;
+            data.name += '1';
+            console.log('clicked', count.value);
+        });
+
+        let $name_input = getElem('#name_input');
+        $name_input.addEventListener('input', (event) => {
+            console.log(event.target.matches('[data-input=change-names]'));
+        });
+        let list = createSignal([]);
+        for (let step = 0; step < 90; step++) {
+            list.push(step);
+        }
+        let $list = bindTemplate('#large_list', () => `
+            ${list.map((item, index) => `<li id="${item}">item: ${item}</li>`).join('')}
+        `);
+        function removeItem() {
+            console.log(list.length);
+            list.splice(0, 1);
+        }
+    </script>
+</body>

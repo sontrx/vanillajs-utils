@@ -1,0 +1,30 @@
+<head></head>
+
+<body>
+    test socket
+</body>
+<script src="https://stg-goga.x3english.com/socket.io/socket.io.js"></script>
+<script>
+    //var enpoint = 'https://stg-goga.x3english.com';
+    //var enpoint = 'http://localhost:8190';
+    var enpoint = 'https://app.goga.ai';
+    var socket = io(enpoint, {
+        transports: ["websocket"],
+        auth: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzQzZGRmZGI5MmU0ZDYyMjFiOWNkOGQiLCJsYW5ndWFnZSI6InZpIiwiY291bnRyeSI6InZuIiwic2Vzc2lvbl9pZCI6Ii9LRDBWVjh2UTlDVDVic08rV25za3cvMzIiLCJpYXQiOjE2NzIzOTAyMjB9.4MPb-8qwzf1esLTlrG7_UT7ShKMrHxOtBWGcciulQbY'
+        },
+    });
+    socket.on("message", (...args) => {
+        console.log(args);
+        // ...
+    });
+    socket.on("client_message", (...args) => {
+        console.log(args);
+        // ...
+    });
+    socket.emit('client_message', JSON.stringify({ mgs: 'sont test', user_id: '626b46ccdd8e8221ec82a63d' }));
+    setTimeout(() => {
+        socket = null;
+    }, 10000)
+
+</script>
